@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.params=filename
+comment0.target=FileIO(java.lang.String)
+comment0.text=\r\n\ Creates\ an\ object\ representing\ filename\ and\ its\ contents.\r\n
+comment1.params=
+comment1.target=java.lang.String\ getName()
+comment1.text=\r\n\ Returns\ the\ name\ of\ the\ file\ read.\r\n
+comment2.params=
+comment2.target=java.util.ArrayList\ getLines()
+comment2.text=\r\n\ Returns\ the\ contents\ of\ the\ file\ read.\r\n
+numComments=3

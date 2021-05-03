@@ -1,0 +1,5 @@
+#BlueJ class context
+comment0.params=x
+comment0.target=boolean\ isMutable(Space)
+comment0.text=\r\n\ Returns\ true\ iff\ x\ represents\ a\ space\ on\ the\ board\ \r\n\ that\ can\ be\ changed\ during\ play.\ \r\n
+numComments=1
