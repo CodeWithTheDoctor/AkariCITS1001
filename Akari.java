@@ -46,7 +46,7 @@ public class Akari
     public int getSize()
     {
         // TODO 1b
-        return -1;
+        return size;
     }
     
     /**
