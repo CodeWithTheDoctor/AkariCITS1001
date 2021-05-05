@@ -20,23 +20,38 @@ public class Akari
      */
     public Akari(String filename)
     {
-        // TODO 3 - In progress
+        // TODO 3 - COMPLETED
         FileIO file = new FileIO(filename);
-        size = Integer.parseInt(file.getLines().get(0));
-        board = new Space[7][7];
+        this.size = Integer.parseInt(file.getLines().get(0));
+        this.board = new Space[this.size][this.size];
         
-        //Empty black sqaures
-        for(String a: file.getLines().get(1).split(" ")) { 
-            for(int i = 1; i<a.length(); i++) {
+        for(int i = 0; i<this.size; i++)
+            for(int j=0; j<this.size; j++)
+                board[i][j] = Space.EMPTY;
+
+        for(String a: file.getLines().get(1).split(" "))
+            for(int i = 1; i<a.length(); i++)
                 board[a.charAt(0)-'0'][a.charAt(i)-'0'] = Space.BLACK;
-            }
-        }
-        // Zero black squares:
-        for(String b: file.getLines().get(2).split(" ")) { 
-            for(int i = 1; i<b.length(); i++) {
+                
+        for(String b: file.getLines().get(2).split(" "))
+            for(int i = 1; i<b.length(); i++)
                 board[b.charAt(0)-'0'][b.charAt(i)-'0'] = Space.ZERO;
-            }
-        }
+        
+        for(String c: file.getLines().get(3).split(" "))
+            for(int i = 1; i<c.length(); i++)
+                board[c.charAt(0)-'0'][c.charAt(i)-'0'] = Space.ONE;
+        
+        for(String d: file.getLines().get(4).split(" "))
+            for(int i = 1; i<d.length(); i++)
+                board[d.charAt(0)-'0'][d.charAt(i)-'0'] = Space.TWO;
+        
+        for(String e: file.getLines().get(5).split(" "))
+            for(int i = 1; i<e.length(); i++)
+                board[e.charAt(0)-'0'][e.charAt(i)-'0'] = Space.THREE;
+        
+        for(String f: file.getLines().get(5).split(" "))
+            for(int i = 1; i<f.length(); i++)
+                board[f.charAt(0)-'0'][f.charAt(i)-'0'] = Space.FOUR;
     }
     
     /**
@@ -90,7 +105,7 @@ public class Akari
     public Space getBoard(int r, int c)
     {
         // TODO 7
-        return null;
+        return board[r][c];
     }
     
     /**
