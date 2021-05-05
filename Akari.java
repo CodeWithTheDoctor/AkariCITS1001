@@ -20,7 +20,13 @@ public class Akari
      */
     public Akari(String filename)
     {
-        // TODO 3
+        // TODO 3 - In progress
+        FileIO file = new FileIO(filename);
+        size = Integer.parseInt(file.getLines().get(0));
+        board = new Space[7][7];
+        
+        //initialising the blacks.
+        String[] blackLocations = file.getLines().get(1).split(" ");
     }
     
     /**
