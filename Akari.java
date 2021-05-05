@@ -36,7 +36,7 @@ public class Akari
      */
     public String getFilename()
     {
-        // TODO 1a
+        // TODO 1a - COMPLETED
         return filename;
     }
     
@@ -45,7 +45,7 @@ public class Akari
      */
     public int getSize()
     {
-        // TODO 1b
+        // TODO 1b - COMPLETED
         return size;
     }
     
@@ -85,8 +85,16 @@ public class Akari
      */
     public static int parseIndex(char x)
     {
-        // TODO 2
-        return -1;
+        // TODO 2 - COMPLETED
+        if(Character.isDigit(x)) {
+            return x - 48;
+        }
+        else if(x >= 'A' && x <= 'Z') {
+            return x - 55;
+        }
+        else {
+            throw new IllegalArgumentException("Must be an uppercase letter or a digit.");
+        }
     }
     
     /**
