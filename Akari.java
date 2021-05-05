@@ -85,8 +85,11 @@ public class Akari
      */
     public boolean isLegal(int k)
     {
-        // TODO 5
-        return false; 
+        // TODO 5 - COMPLETED
+        if(k>=0 && k<size)  
+            return true;
+        else 
+            return false;
     }
     
     /**
@@ -94,8 +97,11 @@ public class Akari
      */
     public boolean isLegal(int r, int c)
     {
-        // TODO 6
-        return false; 
+        // TODO 6 - COMPLETED
+        if(r>=0 && r<size && c>=0 && c<size)
+            return true;
+        else
+            return false;
     }
     
     /**
@@ -104,8 +110,14 @@ public class Akari
      */
     public Space getBoard(int r, int c)
     {
-        // TODO 7
-        return board[r][c];
+        // TODO 7 - COMPLETED
+        if(isLegal(r,c)) {
+            return board[r][c];
+        }
+        else {
+            throw new IllegalArgumentException("Coordinates aren't within the boundaries of the board.");
+        }
+            
     }
     
     /**
@@ -134,7 +146,13 @@ public class Akari
      */
     public void leftClick(int r, int c)
     {
-        // TODO 8
+        // TODO 8 - COMPLETED
+        if(board[r][c] == Space.EMPTY) {
+            board[r][c] = Space.BULB;
+        }
+        else if(board[r][c] == Space.BULB) {
+            board[r][c] = Space.EMPTY;
+        }
     }
     
     /**
@@ -142,7 +160,10 @@ public class Akari
      */
     public void clear()
     {
-        // TODO 4
+        // TODO 4 - COMPLETED
+        for(int i = 0; i<this.size; i++)
+            for(int j=0; j<this.size; j++)
+                if(board[i][j] == Space.BULB) board[i][j] = Space.EMPTY;
     }
     
     /**
