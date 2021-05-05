@@ -25,8 +25,18 @@ public class Akari
         size = Integer.parseInt(file.getLines().get(0));
         board = new Space[7][7];
         
-        //initialising the blacks.
-        String[] blackLocations = file.getLines().get(1).split(" ");
+        //Empty black sqaures
+        for(String a: file.getLines().get(1).split(" ")) { 
+            for(int i = 1; i<a.length(); i++) {
+                board[a.charAt(0)-'0'][a.charAt(i)-'0'] = Space.BLACK;
+            }
+        }
+        // Zero black squares:
+        for(String b: file.getLines().get(2).split(" ")) { 
+            for(int i = 1; i<b.length(); i++) {
+                board[b.charAt(0)-'0'][b.charAt(i)-'0'] = Space.ZERO;
+            }
+        }
     }
     
     /**
