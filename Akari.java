@@ -22,6 +22,7 @@ public class Akari
     {
         // TODO 3 - COMPLETED
         FileIO file = new FileIO(filename);
+        this.filename = filename;
         this.size = Integer.parseInt(file.getLines().get(0));
         this.board = new Space[this.size][this.size];
         
@@ -49,7 +50,7 @@ public class Akari
             for(int i = 1; i<e.length(); i++)
                 board[e.charAt(0)-'0'][e.charAt(i)-'0'] = Space.THREE;
         
-        for(String f: file.getLines().get(5).split(" "))
+        for(String f: file.getLines().get(6).split(" "))
             for(int i = 1; i<f.length(); i++)
                 board[f.charAt(0)-'0'][f.charAt(i)-'0'] = Space.FOUR;
     }
@@ -147,11 +148,13 @@ public class Akari
     public void leftClick(int r, int c)
     {
         // TODO 8 - COMPLETED
-        if(board[r][c] == Space.EMPTY) {
-            board[r][c] = Space.BULB;
-        }
-        else if(board[r][c] == Space.BULB) {
-            board[r][c] = Space.EMPTY;
+        if(isLegal(r,c)) {
+            if(board[r][c] == Space.EMPTY) {
+                board[r][c] = Space.BULB;
+            }
+            else if(board[r][c] == Space.BULB) {
+                board[r][c] = Space.EMPTY;
+            }
         }
     }
     

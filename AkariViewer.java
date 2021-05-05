@@ -19,6 +19,7 @@ public class AkariViewer implements MouseListener
     public AkariViewer(Akari puzzle)
     {
         // TODO 10
+        this.puzzle = puzzle; 
     }
     
     /**
@@ -43,8 +44,8 @@ public class AkariViewer implements MouseListener
      */
     public Akari getPuzzle()
     {
-        // TODO 9a
-        return null;
+        // TODO 9a - COMPLETED
+        return puzzle;
     }
     
     /**
@@ -52,8 +53,8 @@ public class AkariViewer implements MouseListener
      */
     public SimpleCanvas getCanvas()
     {
-        // TODO 9b
-        return null;
+        // TODO 9b - COMPLETED
+        return sc;
     }
     
     /**
