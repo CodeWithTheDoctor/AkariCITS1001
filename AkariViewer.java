@@ -18,8 +18,13 @@ public class AkariViewer implements MouseListener
      */
     public AkariViewer(Akari puzzle)
     {
-        // TODO 10
-        this.puzzle = puzzle; 
+        // TODO 10 - COMPLETED (might need to change canvas size to scale)
+        this.puzzle = puzzle;
+        
+        sc = new SimpleCanvas("Akari Game", 600, 600, Color.white);
+        sc.addMouseListener(this);
+        
+        displayPuzzle();
     }
     
     /**
@@ -62,7 +67,19 @@ public class AkariViewer implements MouseListener
      */
     private void displayPuzzle()
     {
-        // TODO 11
+        // TODO 11 - In Progress (not sure how to account for lit squares)
+        /*
+        Color c;
+        for (int i = 0; i < puzzle.getSize(); i++) {
+            for (int j = 0; j < puzzle.getSize(); j++) {
+                if (puzzle.getBoard(i, j) == Space.EMPTY) {c = Color.white;}
+                else if (puzzle.getBoard(i, j) == Space.BLACK || ) {
+                    c = Color.black;
+                    
+                }
+            }
+        }
+        */
     }
     
     /**
@@ -72,10 +89,22 @@ public class AkariViewer implements MouseListener
     public void leftClick(int r, int c)
     {
         // TODO 12
+        puzzle.leftClick(r, c);
+        displayPuzzle();
     }
     
-    // TODO 13
-    public void mousePressed (MouseEvent e) {}
+    // TODO 13 (only implementing basic left click functionality for now)
+    public void mousePressed (MouseEvent e) {
+        //call finished method on puzzle -> returns boolean
+        boolean complete = puzzle.finished();
+        if (!complete) {
+            puzzle.leftClick((e.getX() / (puzzle.getSize()/600)), (e.getX() / (puzzle.getSize()/600)));
+        } else {
+            // do some cool visual thing when puzzle is solved
+            System.out.println("COMPLETE");
+        }
+    }
+
     public void mouseClicked (MouseEvent e) {}
     public void mouseReleased(MouseEvent e) {}
     public void mouseEntered (MouseEvent e) {}

@@ -200,7 +200,16 @@ public class Akari
      */
     public String isSolution()
     {
-        // TODO 16
+        // TODO 16 (might need to create new method)
         return null;
+    }
+    
+    // Other methods
+    /**
+     * Returns true if puzzle is complete
+     */
+    public boolean finished()
+    {
+        return false;
     }
 }
