@@ -94,8 +94,12 @@ public class AkariViewer implements MouseListener
     }
     
     // TODO 13 (only implementing basic left click functionality for now)
+    // change code in mousePressed() to mouseClicked()
     public void mousePressed (MouseEvent e) {
-        //call finished method on puzzle -> returns boolean
+    }
+
+    public void mouseClicked (MouseEvent e) {
+            //call finished method on puzzle -> returns boolean
         boolean complete = puzzle.finished();
         if (!complete) {
             puzzle.leftClick((e.getX() / (puzzle.getSize()/600)), (e.getX() / (puzzle.getSize()/600)));
@@ -104,8 +108,6 @@ public class AkariViewer implements MouseListener
             System.out.println("COMPLETE");
         }
     }
-
-    public void mouseClicked (MouseEvent e) {}
     public void mouseReleased(MouseEvent e) {}
     public void mouseEntered (MouseEvent e) {}
     public void mouseExited  (MouseEvent e) {}

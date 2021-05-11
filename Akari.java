@@ -20,11 +20,13 @@ public class Akari
      */
     public Akari(String filename)
     {
-        // TODO 3 - COMPLETED
+        // TODO 3 - COMPLETED (Needs optimisation - check for negatives in this.board [lyndon mentioned it in lecture])
         FileIO file = new FileIO(filename);
         this.filename = filename;
         this.size = Integer.parseInt(file.getLines().get(0));
         this.board = new Space[this.size][this.size];
+        
+        // have one big loop
         
         for(int i = 0; i<this.size; i++)
             for(int j=0; j<this.size; j++)
