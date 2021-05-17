@@ -12,7 +12,7 @@ public class AkariViewer implements MouseListener
 {    
     private Akari puzzle;    // the internal representation of the puzzle
     private SimpleCanvas sc; // the display window
-    private boolean[][] isLit;
+    private int canvasSize;  // the size of the display window
     /**
      * Constructor for objects of class AkariViewer.
      * Sets all fields and displays the initial puzzle.
@@ -21,8 +21,9 @@ public class AkariViewer implements MouseListener
     {
         // TODO 10 - COMPLETED (might need to change canvas size to scale)
         this.puzzle = puzzle;
+        this.canvasSize = 600;
         
-        sc = new SimpleCanvas("Akari Game", 600, 600, Color.white);
+        sc = new SimpleCanvas("Akari Game", canvasSize, canvasSize + 150, Color.white);
         sc.addMouseListener(this);
         
         displayPuzzle();
@@ -91,9 +92,9 @@ public class AkariViewer implements MouseListener
                     }
                     if (isBlack) {c = Color.BLACK;}
                     else{ c = Color.YELLOW; }
-                    
                 }
-                sc.drawRectangle(j * puzzle.getSize(), i * puzzle.getSize(), (j+1) * puzzle.getSize(), (i + 1) * puzzle.getSize(), c);
+                sc.drawRectangle(j * this.canvasSize/puzzle.getSize(), i * this.canvasSize/puzzle.getSize(), (j+1) * this.canvasSize/puzzle.getSize(), (i + 1) * this.canvasSize/puzzle.getSize(), c);
+                // draw text for black squares
             }
         }
     }
@@ -115,7 +116,7 @@ public class AkariViewer implements MouseListener
     }
 
     public void mouseClicked (MouseEvent e) {
-            //call finished method on puzzle -> returns boolean
+        //call finished method on puzzle -> returns boolean
         boolean complete = puzzle.finished();
         if (!complete) {
             puzzle.leftClick((e.getX() / (puzzle.getSize()/600)), (e.getX() / (puzzle.getSize()/600)));
@@ -127,4 +128,6 @@ public class AkariViewer implements MouseListener
     public void mouseReleased(MouseEvent e) {}
     public void mouseEntered (MouseEvent e) {}
     public void mouseExited  (MouseEvent e) {}
+    
+    
 }
