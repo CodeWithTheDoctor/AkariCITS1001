@@ -167,7 +167,28 @@ public class Akari
     public int numberOfBulbs(int r, int c)
     {
         // TODO 14
-        return -1;
+        int numBulbs = 0;
+        if(isLegal(r-1,c)) {
+            if(board[r-1][c] == Space.BULB){
+                numBulbs++;
+            }
+        }
+        if(isLegal(r+1,c)) {
+            if(board[r+1][c] == Space.BULB){
+                numBulbs++;
+            }
+        }
+        if(isLegal(r,c-1)) {
+            if(board[r][c-1] == Space.BULB){
+                numBulbs++;
+            }
+        }
+        if(isLegal(r,c+1)) {
+            if(board[r][c+1] == Space.BULB){
+                numBulbs++;
+            }
+        }
+        return numBulbs;
     }
     
     /**
