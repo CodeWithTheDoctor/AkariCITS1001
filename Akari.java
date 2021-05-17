@@ -138,7 +138,7 @@ public class Akari
      */
     public void leftClick(int r, int c)
     {
-        // TODO 8 - COMPLETED
+        // TODO 8 - COMPLETEDs
         if(isLegal(r,c)) {
             if(board[r][c] == Space.EMPTY) {
                 board[r][c] = Space.BULB;
@@ -202,12 +202,21 @@ public class Akari
         boolean litSquare;
 
         int lookLeft = 0;
-        int lookright = 0;
-        int lookup = 0;
-        int lookdown = 0;
+        int lookRight = 0;
+        int lookUp = 0;
+        int lookDown = 0;
+        
+        // init flags??
+        //boolean 
         
         // return true inside of loop when
         do {
+            if (isLegal(r + lookLeft, c))  {lookLeft--;}
+            if (isLegal(r + lookRight, c)) {lookRight++;}
+            if (isLegal(r, c + lookUp))    {lookUp--;}
+            if (isLegal(r, c + lookDown))  {lookDown++;}
+            
+            if ()
             // assign board[][] to var if isLegal()
             // if var1 || var2... == Space.bulb
                 // return true
@@ -216,7 +225,7 @@ public class Akari
                     // if yes, do not increment
                 // if none increment
                     // return false
-                    
+            
         } while (true);
     }
     
