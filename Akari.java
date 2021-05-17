@@ -198,7 +198,26 @@ public class Akari
     public boolean canSeeBulb(int r, int c)
     {
         // TODO 15
-        return false;
+        if (isLegal(r, c) == false) {throw new IllegalArgumentException("This square does not exist on the grid.");}
+        boolean litSquare;
+
+        int lookLeft = 0;
+        int lookright = 0;
+        int lookup = 0;
+        int lookdown = 0;
+        
+        // return true inside of loop when
+        do {
+            // assign board[][] to var if isLegal()
+            // if var1 || var2... == Space.bulb
+                // return true
+            // else
+                // check if black
+                    // if yes, do not increment
+                // if none increment
+                    // return false
+                    
+        } while (true);
     }
     
     /**
