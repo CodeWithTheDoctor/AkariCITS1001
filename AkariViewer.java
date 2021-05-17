@@ -72,6 +72,7 @@ public class AkariViewer implements MouseListener
         
         Color c;
         Space[] blackBlocks = new Space[] {Space.BLACK,Space.ZERO,Space.ONE,Space.TWO,Space.THREE,Space.FOUR};
+        boolean isBlack = false;
         for (int i = 0; i < puzzle.getSize(); i++) {
             for (int j = 0; j < puzzle.getSize(); j++) {
                 if (puzzle.getBoard(i, j) == Space.EMPTY) {
@@ -82,11 +83,17 @@ public class AkariViewer implements MouseListener
                         c = Color.WHITE;
                     }
                 }
-                else if (Arrays.stream(b).anyMatch(x -> x == puzzle.getBoard(i, j))) {
-                    c = Color.BLACK;
+                else{
+                    for(Space b : blackBlocks) { 
+                        if(b == puzzle.getBoard(i,j)){
+                            isBlack = true;
+                        } 
+                    }
+                    if (isBlack) {c = Color.BLACK;}
+                    else{ c = Color.YELLOW; }
                     
                 }
-                sc.drawRectangle(j * puzzle.getSize(). i * puzzle.getSize(), (j+1) * puzzle.getSize(), (i + 1) * puzzle.getSize(), c);
+                sc.drawRectangle(j * puzzle.getSize(), i * puzzle.getSize(), (j+1) * puzzle.getSize(), (i + 1) * puzzle.getSize(), c);
             }
         }
     }

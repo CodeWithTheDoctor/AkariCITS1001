@@ -208,8 +208,8 @@ public class Akari
      * Returns grid that contains if square is lit
      * /
      */
-    public boolean[][] getLitGrid()
+    public boolean getLitGrid(int x, int y)
     {
-        return this.litGrid;
+        return this.litGrid[x][y];
     }
 }
