@@ -2,6 +2,9 @@
 dependency1.from=TestAkari
 dependency1.to=Akari
 dependency1.type=UsesDependency
+dependency10.from=AkariViewer
+dependency10.to=Space
+dependency10.type=UsesDependency
 dependency2.from=TestAkari
 dependency2.to=Space
 dependency2.type=UsesDependency
@@ -26,17 +29,10 @@ dependency8.type=UsesDependency
 dependency9.from=AkariViewer
 dependency9.to=SimpleCanvas
 dependency9.type=UsesDependency
-<<<<<<< HEAD
-editor.fx.0.height=737
-editor.fx.0.width=814
-editor.fx.0.x=229
-editor.fx.0.y=8
-=======
-editor.fx.0.height=878
-editor.fx.0.width=1550
+editor.fx.0.height=694
+editor.fx.0.width=1294
 editor.fx.0.x=-7
 editor.fx.0.y=-7
->>>>>>> main
 objectbench.height=156
 objectbench.width=749
 package.divider.horizontal=0.6
@@ -47,7 +43,7 @@ package.editor.x=0
 package.editor.y=0
 package.frame.height=694
 package.frame.width=1294
-package.numDependencies=9
+package.numDependencies=10
 package.numTargets=8
 package.showExtends=true
 package.showUses=true

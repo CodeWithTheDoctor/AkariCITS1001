@@ -21,9 +21,9 @@ public class AkariViewer implements MouseListener
     {
         // TODO 10 - COMPLETED (might need to change canvas size to scale)
         this.puzzle = puzzle;
-        this.canvasSize = 600;
+        this.canvasSize = 500;
         
-        sc = new SimpleCanvas("Akari Game", canvasSize, canvasSize + 150, Color.white);
+        sc = new SimpleCanvas("Akari Game", canvasSize, canvasSize + 100, Color.white);
         sc.addMouseListener(this);
         
         displayPuzzle();
@@ -93,9 +93,27 @@ public class AkariViewer implements MouseListener
                     if (isBlack) {c = Color.BLACK;}
                     else{ c = Color.YELLOW; }
                 }
-                sc.drawRectangle(j * this.canvasSize/puzzle.getSize(), i * this.canvasSize/puzzle.getSize(), (j+1) * this.canvasSize/puzzle.getSize(), (i + 1) * this.canvasSize/puzzle.getSize(), c);
+                /*sc.drawRectangle(j * this.canvasSize/puzzle.getSize(),
+                                    i * this.canvasSize/puzzle.getSize(),
+                                    (j+1) * this.canvasSize/puzzle.getSize(),
+                                    (i + 1) * this.canvasSize/puzzle.getSize(), c);*/
                 // draw text for black squares
             }
+        }
+        
+        for(int i=0; i<=puzzle.getSize(); i++) {
+            sc.drawLine(i*this.canvasSize/puzzle.getSize(),
+                        0,
+                        i*this.canvasSize/puzzle.getSize(),
+                        puzzle.getSize()* this.canvasSize/puzzle.getSize(),
+                        Color.BLACK);
+        }
+        for(int j=0; j<=puzzle.getSize(); j++) {
+            sc.drawLine(0,
+                        j*this.canvasSize/puzzle.getSize(),
+                        puzzle.getSize()*this.canvasSize,
+                        j*this.canvasSize/puzzle.getSize(),
+                        Color.BLACK);
         }
     }
     
