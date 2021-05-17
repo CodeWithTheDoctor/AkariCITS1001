@@ -4,13 +4,15 @@
  * @author Lyndon While 
  * @version 2021
  */
-import java.util.ArrayList; 
+import java.util.ArrayList;
+import java.util.Arrays; 
 
 public class Akari
 {
     private String filename; // the name of the puzzle file
     private int size;        // the board is size x size
     private Space[][] board; // the board is a square grid of spaces of various types
+    private boolean[][] litGrid;
 
     /**
      * Constructor for objects of class Akari. 
@@ -20,39 +22,28 @@ public class Akari
      */
     public Akari(String filename)
     {
-        // TODO 3 - COMPLETED
-        FileIO file = new FileIO(filename);
-        this.filename = filename;
-        this.size = Integer.parseInt(file.getLines().get(0));
-        this.board = new Space[this.size][this.size];
-        
-        for(int i = 0; i<this.size; i++)
-            for(int j=0; j<this.size; j++)
-                board[i][j] = Space.EMPTY;
+        // TODO 3 - COMPLETED (Needs optimisation - check for negatives in this.board [lyndon mentioned it in lecture])
+       FileIO file = new FileIO(filename);
+       this.filename = filename;
+       this.size = Integer.parseInt(file.getLines().get(0));
+       this.board = new Space[this.size][this.size];
+       this.litGrid = new boolean[this.size][this.size];
 
-        for(String a: file.getLines().get(1).split(" "))
-            for(int i = 1; i<a.length(); i++)
-                board[a.charAt(0)-'0'][a.charAt(i)-'0'] = Space.BLACK;
-                
-        for(String b: file.getLines().get(2).split(" "))
-            for(int i = 1; i<b.length(); i++)
-                board[b.charAt(0)-'0'][b.charAt(i)-'0'] = Space.ZERO;
-        
-        for(String c: file.getLines().get(3).split(" "))
-            for(int i = 1; i<c.length(); i++)
-                board[c.charAt(0)-'0'][c.charAt(i)-'0'] = Space.ONE;
-        
-        for(String d: file.getLines().get(4).split(" "))
-            for(int i = 1; i<d.length(); i++)
-                board[d.charAt(0)-'0'][d.charAt(i)-'0'] = Space.TWO;
-        
-        for(String e: file.getLines().get(5).split(" "))
-            for(int i = 1; i<e.length(); i++)
-                board[e.charAt(0)-'0'][e.charAt(i)-'0'] = Space.THREE;
-        
-        for(String f: file.getLines().get(6).split(" "))
-            for(int i = 1; i<f.length(); i++)
-                board[f.charAt(0)-'0'][f.charAt(i)-'0'] = Space.FOUR;
+       for(int i = 0; i<this.size; i++) {
+           for(int j=0; j<this.size; j++) {
+               board[i][j] = Space.EMPTY;
+               litGrid[i][j] = false;
+            }
+       } 
+
+       for (int i = 1; i <= 6; i++) {
+           String[] a = file.getLines().get(i).split(" ");
+           for (String x: a) {
+               for (int z = 1; z < x.length(); z++) {
+                   board[x.charAt(0)-'0'][x.charAt(z)-'0'] = Space.values()[i - 1];
+               }
+           }
+       }
     }
     
     /**
@@ -211,5 +202,14 @@ public class Akari
     public boolean finished()
     {
         return false;
+    }
+    
+    /**
+     * Returns grid that contains if square is lit
+     * /
+     */
+    public boolean[][] getLitGrid()
+    {
+        return this.litGrid;
     }
 }
