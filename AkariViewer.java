@@ -7,6 +7,7 @@
 import java.awt.*;
 import java.awt.event.*; 
 import java.util.Arrays;
+import java.awt.Color;
 
 public class AkariViewer implements MouseListener
 {    
@@ -21,9 +22,9 @@ public class AkariViewer implements MouseListener
     {
         // TODO 10 - COMPLETED (might need to change canvas size to scale)
         this.puzzle = puzzle;
-        this.canvasSize = 500;
+        this.canvasSize = 520;
         
-        sc = new SimpleCanvas("Akari Game", canvasSize, canvasSize + 100, Color.white);
+        sc = new SimpleCanvas("Akari Game", canvasSize, canvasSize + 125, Color.white);
         sc.addMouseListener(this);
         
         displayPuzzle();
@@ -35,7 +36,7 @@ public class AkariViewer implements MouseListener
      */
     public AkariViewer(int n)
     {
-        this(new Akari("Puzzles/p" + n / 10 + "-e" + n % 10 + ".txt"));
+        this(new Akari("Puzzles/p" + n  / 10 + "-e" + n % 10 + ".txt"));
     }
     
     /** 
@@ -70,51 +71,57 @@ public class AkariViewer implements MouseListener
     private void displayPuzzle()
     {
         // TODO 11 - In Progress (not sure how to account for lit squares)
-        // to string deep
-        //System.out.println()
-        Color c;
-        Space[] blackBlocks = new Space[] {Space.BLACK,Space.ZERO,Space.ONE,Space.TWO,Space.THREE,Space.FOUR};
-        boolean isBlack = false;
-        for (int i = 0; i < puzzle.getSize(); i++) {
-            for (int j = 0; j < puzzle.getSize(); j++) {
-                if (puzzle.getBoard(i, j) == Space.EMPTY) {
-                    if(puzzle.canSeeBulb(i, j)){
-                        c = Color.YELLOW;
+        Color col;
+        int cell_width = this.canvasSize/puzzle.getSize();
+        
+        for (int r = 0; r < puzzle.getSize(); r++) {
+            for (int c = 0; c < puzzle.getSize(); c++) {
+                String charDisp = "";
+                if (puzzle.canSeeBulb(r, c)) {
+                    col = Color.YELLOW;
+                    if (puzzle.getBoard(r, c) == Space.BULB) {
+                        // set char to print
+                        charDisp = "\u1F4A1";
                     }
-                    else {
-                        c = Color.WHITE;
+                } else {
+                    if (puzzle.getBoard(r, c) == Space.EMPTY){
+                        col = Color.WHITE;
+                    // square is black in this case
+                    } else {
+                        col = Color.BLACK;
+                        switch (puzzle.getBoard(r, c)) {
+                            // set char to print
+                            case BLACK:
+                                break;
+                            case ZERO:
+                                charDisp = "0";
+                                break;
+                            case ONE:
+                                charDisp = "1";
+                                break;
+                            case TWO:
+                                charDisp = "2";
+                                break;
+                            case THREE:
+                                charDisp = "3";
+                                break;
+                            case FOUR:
+                                charDisp = "4";
+                                break;
+                            
+                        }
                     }
                 }
-                else{
-                    for(Space b : blackBlocks) { 
-                        if(b == puzzle.getBoard(i,j)){
-                            isBlack = true;
-                        } 
-                    }
-                    if (isBlack) {c = Color.BLACK;}
-                    else{ c = Color.YELLOW; }
-                }
-                /*sc.drawRectangle(j * this.canvasSize/puzzle.getSize(),
-                                    i * this.canvasSize/puzzle.getSize(),
-                                    (j+1) * this.canvasSize/puzzle.getSize(),
-                                    (i + 1) * this.canvasSize/puzzle.getSize(), c);*/
-                // draw text for black squares
+                sc.drawRectangle(c * cell_width, r * cell_width, (c + 1) * cell_width, (r + 1) * cell_width, col);               
+                // draw text here
+                if (charDisp != "") {sc.drawString(charDisp, r * cell_width, c * cell_width, Color.WHITE);}
             }
         }
         
-        for(int i=0; i<=puzzle.getSize(); i++) {
-            sc.drawLine(i*this.canvasSize/puzzle.getSize(),
-                        0,
-                        i*this.canvasSize/puzzle.getSize(),
-                        puzzle.getSize()* this.canvasSize/puzzle.getSize(),
-                        Color.BLACK);
-        }
-        for(int j=0; j<=puzzle.getSize(); j++) {
-            sc.drawLine(0,
-                        j*this.canvasSize/puzzle.getSize(),
-                        puzzle.getSize()*this.canvasSize,
-                        j*this.canvasSize/puzzle.getSize(),
-                        Color.BLACK);
+        // draw grid
+        for (int i = 0; i <= puzzle.getSize(); i++) {
+            sc.drawLine(0, i * cell_width,puzzle.getSize() * cell_width, i * cell_width, Color.BLACK);
+            sc.drawLine(i * cell_width, 0, i * cell_width, puzzle.getSize() * cell_width, Color.BLACK);
         }
     }
     
@@ -147,6 +154,4 @@ public class AkariViewer implements MouseListener
     public void mouseReleased(MouseEvent e) {}
     public void mouseEntered (MouseEvent e) {}
     public void mouseExited  (MouseEvent e) {}
-    
-    
 }

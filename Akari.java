@@ -41,6 +41,8 @@ public class Akari
                }
            }
        }
+       
+    System.out.println(Arrays.deepToString(board));
     }
     
     /**
