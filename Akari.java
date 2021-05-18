@@ -295,7 +295,7 @@ public class Akari
                 } else {downStop = true;}
             }            
             // might change this condition - have the return statement in the loop
-        } while (!leftStop && !rightStop && !upStop && !downStop);
+        } while (!leftStop || !rightStop || !upStop || !downStop);
         return false;
     }
     
@@ -324,9 +324,4 @@ public class Akari
     {
         return false;
     }
-    
-    /**
-     * checks if adjacent square is 
-     */
- 
 }

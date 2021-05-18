@@ -70,14 +70,15 @@ public class AkariViewer implements MouseListener
     private void displayPuzzle()
     {
         // TODO 11 - In Progress (not sure how to account for lit squares)
-        
+        // to string deep
+        //System.out.println()
         Color c;
         Space[] blackBlocks = new Space[] {Space.BLACK,Space.ZERO,Space.ONE,Space.TWO,Space.THREE,Space.FOUR};
         boolean isBlack = false;
         for (int i = 0; i < puzzle.getSize(); i++) {
             for (int j = 0; j < puzzle.getSize(); j++) {
                 if (puzzle.getBoard(i, j) == Space.EMPTY) {
-                    if(puzzle.getLitGrid(i, j)){
+                    if(puzzle.canSeeBulb(i, j)){
                         c = Color.YELLOW;
                     }
                     else {
