@@ -12,7 +12,6 @@ public class Akari
     private String filename; // the name of the puzzle file
     private int size;        // the board is size x size
     private Space[][] board; // the board is a square grid of spaces of various types
-    private boolean[][] litGrid;
 
     /**
      * Constructor for objects of class Akari. 
@@ -27,12 +26,10 @@ public class Akari
        this.filename = filename;
        this.size = Integer.parseInt(file.getLines().get(0));
        this.board = new Space[this.size][this.size];
-       this.litGrid = new boolean[this.size][this.size];
 
        for(int i = 0; i<this.size; i++) {
            for(int j=0; j<this.size; j++) {
                board[i][j] = Space.EMPTY;
-               litGrid[i][j] = false;
             }
        } 
 
@@ -199,35 +196,110 @@ public class Akari
     {
         // TODO 15
         if (isLegal(r, c) == false) {throw new IllegalArgumentException("This square does not exist on the grid.");}
-        boolean litSquare;
-
         int lookLeft = 0;
         int lookRight = 0;
         int lookUp = 0;
         int lookDown = 0;
         
-        // init flags??
-        //boolean 
+        // init flags
+        boolean leftStop = false;
+        boolean rightStop = false;
+        boolean upStop = false;
+        boolean downStop = false;
         
         // return true inside of loop when
         do {
-            if (isLegal(r + lookLeft, c))  {lookLeft--;}
-            if (isLegal(r + lookRight, c)) {lookRight++;}
-            if (isLegal(r, c + lookUp))    {lookUp--;}
-            if (isLegal(r, c + lookDown))  {lookDown++;}
+            if (leftStop == false) {
+                lookLeft--;
+                // check if square is legal, else square does not exist on grid
+                if (isLegal(r + lookLeft, c)) {
+                    // check if space is bulb, black or empty
+                    switch (board[r + lookLeft][c]) {
+                        case BULB:
+                            return true;
+
+                        case ZERO:
+                        case ONE:
+                        case TWO:
+                        case THREE:
+                        case FOUR:
+                            leftStop = true;
+                            break;
+
+                        case EMPTY:
+                            break;
+                    }
+                } else {leftStop = true;}
+            }
+    
+            if (rightStop == false) {
+                lookRight++;
+                if (isLegal(r + lookRight, c)) {
+                    switch (board[r + lookRight][c]) {
+                        case BULB:
+                            return true;
+
+                        case ZERO:
+                        case ONE:
+                        case TWO:
+                        case THREE:
+                        case FOUR:
+                            rightStop = true;
+                            break;
+
+                        case EMPTY:
+                            break;
+                    }
+                } else {rightStop = true;}
+            }
             
-            if ()
-            // assign board[][] to var if isLegal()
-            // if var1 || var2... == Space.bulb
-                // return true
-            // else
-                // check if black
-                    // if yes, do not increment
-                // if none increment
-                    // return false
-            
-        } while (true);
+            if (upStop == false) {
+                lookUp--;
+                if (isLegal(r, c + lookUp)) {
+                    switch (board[r][c + lookUp]) {
+                        case BULB:
+                            return true;
+
+                        case ZERO:
+                        case ONE:
+                        case TWO:
+                        case THREE:
+                        case FOUR:
+                            upStop = true;
+                            break;
+
+                        case EMPTY:
+                            break;
+                    }
+                } else {upStop = true;}
+            }
+
+            if (downStop == false) {
+                lookDown++;
+                if (isLegal(r, c + lookDown)) {
+                    switch (board[r][c + lookDown]) {
+                        case BULB:
+                            return true;
+
+                        case ZERO:
+                        case ONE:
+                        case TWO:
+                        case THREE:
+                        case FOUR:
+                            downStop = true;
+                            break;
+
+                        case EMPTY:
+                            break;
+                    }
+                } else {downStop = true;}
+            }            
+            // might change this condition - have the return statement in the loop
+        } while (!leftStop && !rightStop && !upStop && !downStop);
+        return false;
     }
+    
+    
     
     /**
      * Returns an assessment of the state of the puzzle, either 
@@ -254,11 +326,7 @@ public class Akari
     }
     
     /**
-     * Returns grid that contains if square is lit
-     * /
+     * checks if adjacent square is 
      */
-    public boolean getLitGrid(int x, int y)
-    {
-        return this.litGrid[x][y];
-    }
+ 
 }
