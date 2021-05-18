@@ -108,13 +108,12 @@ public class AkariViewer implements MouseListener
                             case FOUR:
                                 charDisp = "4";
                                 break;
-                            
                         }
                     }
                 }
                 sc.drawRectangle(c * cell_width, r * cell_width, (c + 1) * cell_width, (r + 1) * cell_width, col);               
                 // draw text here
-                if (charDisp != "") {sc.drawString(charDisp, r * cell_width, c * cell_width, Color.WHITE);}
+                if (charDisp != "") {sc.drawString(charDisp, c * cell_width + (cell_width/2), r * cell_width + (cell_width/2), Color.WHITE);}
             }
         }
         

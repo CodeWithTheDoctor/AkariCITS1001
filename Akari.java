@@ -42,7 +42,7 @@ public class Akari
            }
        }
        
-    System.out.println(Arrays.deepToString(board));
+       System.out.println(Arrays.deepToString(board));
     }
     
     /**
@@ -210,6 +210,7 @@ public class Akari
         boolean downStop = false;
         
         // return true inside of loop when
+        /*
         do {
             if (leftStop == false) {
                 lookLeft--;
@@ -219,16 +220,11 @@ public class Akari
                     switch (board[r + lookLeft][c]) {
                         case BULB:
                             return true;
-
-                        case ZERO:
-                        case ONE:
-                        case TWO:
-                        case THREE:
-                        case FOUR:
-                            leftStop = true;
-                            break;
-
                         case EMPTY:
+                            break;
+                        // if not bulb or empty
+                        default:
+                            leftStop = false;
                             break;
                     }
                 } else {leftStop = true;}
@@ -240,16 +236,11 @@ public class Akari
                     switch (board[r + lookRight][c]) {
                         case BULB:
                             return true;
-
-                        case ZERO:
-                        case ONE:
-                        case TWO:
-                        case THREE:
-                        case FOUR:
-                            rightStop = true;
-                            break;
-
                         case EMPTY:
+                            break;
+                        // if not bulb or empty
+                        default:
+                            rightStop = false;
                             break;
                     }
                 } else {rightStop = true;}
@@ -261,16 +252,11 @@ public class Akari
                     switch (board[r][c + lookUp]) {
                         case BULB:
                             return true;
-
-                        case ZERO:
-                        case ONE:
-                        case TWO:
-                        case THREE:
-                        case FOUR:
-                            upStop = true;
-                            break;
-
                         case EMPTY:
+                            break;
+                        // if not bulb or empty
+                        default:
+                            upStop = false;
                             break;
                     }
                 } else {upStop = true;}
@@ -282,22 +268,59 @@ public class Akari
                     switch (board[r][c + lookDown]) {
                         case BULB:
                             return true;
-
-                        case ZERO:
-                        case ONE:
-                        case TWO:
-                        case THREE:
-                        case FOUR:
-                            downStop = true;
-                            break;
-
                         case EMPTY:
+                            break;
+                        // if not bulb or empty
+                        default:
+                            downStop = false;
                             break;
                     }
                 } else {downStop = true;}
             }            
             // might change this condition - have the return statement in the loop
         } while (!leftStop || !rightStop || !upStop || !downStop);
+        */
+       
+        /*
+        do {
+            if (leftStop == false) {
+                lookLeft--;
+                // check if square is legal, else square does not exist on grid
+                if (isLegal(r + lookLeft, c)) {
+                    // check if space is bulb, black or empty
+                    if (board[r + lookLeft][c] == Space.BULB) {return true;
+                    } else {if (board[r + lookLeft][c] == Space.EMPTY) {}
+                    else {leftStop = false;}}
+                }
+                } else {leftStop = true;}
+    
+            if (rightStop == false) {
+                lookRight++;
+                if (isLegal(r + lookRight, c)) {
+                    if (board[r + lookRight][c] == Space.BULB) {return true;
+                    } else {if (board[r + lookRight][c] == Space.EMPTY) {}
+                    else {rightStop = false;}}
+                    }
+                } else {rightStop = true;}
+            
+            if (upStop == false) {
+                lookUp--;
+                if (isLegal(r, c + lookUp)) {
+                    if (board[r][c + lookUp] == Space.BULB) {return true;
+                    } else {if (board[r][c + lookUp] == Space.EMPTY) {}
+                    else {upStop = false;}}
+                    }
+                } else {upStop = true;}
+
+            if (downStop == false) {
+                lookDown++;
+                if (isLegal(r, c + lookDown)) {
+                    if (board[r][c + lookDown] == Space.BULB) {return true;
+                    } else {if (board[r][c + lookDown] == Space.EMPTY) {}
+                    else {downStop = false;}}
+                    }
+                } else {downStop = true;}         
+        } while (!leftStop || !rightStop || !upStop || !downStop); */
         return false;
     }
     
