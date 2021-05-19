@@ -274,7 +274,7 @@ public class Akari
      */
     public String isSolution()
     {
-        // TODO 16 (might need to create new method)
+        // TODO 16 
         ArrayList<String> unlitBulbs = new ArrayList<>();
         ArrayList<String> clashingBulbs = new ArrayList<>();
         ArrayList<String> wrongBulbs = new ArrayList<>();
@@ -311,14 +311,15 @@ public class Akari
                         wrongBulbs.add(Integer.toString(r) + "," + Integer.toString(c));
                     }
                 }
-                
-                if(unlitBulbs.isEmpty() && clashingBulbs.isEmpty() && wrongBulbs.isEmpty()) {
-                    return "\u2713\u2713\u2713";
-                }
-                else{
-                    
-                }
             }
+        }
+
+        if(unlitBulbs.isEmpty() && clashingBulbs.isEmpty() && wrongBulbs.isEmpty()) {
+            return "\u2713\u2713\u2713";
+        }
+        else{
+            // return message here
+            return "test";
         }
     }
     

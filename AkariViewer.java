@@ -14,9 +14,10 @@ public class AkariViewer implements MouseListener
     private Akari puzzle;    // the internal representation of the puzzle
     private SimpleCanvas sc; // the display window
     private int canvasSize;  // the size of the display window
+    private int sidebarSize;
     private int cell_width;
-    private Font gridFont;
-    private Font outputFont;
+    private Font gridFont, outputFont;
+    private int buttonLen, buttonHei;
     /**
      * Constructor for objects of class AkariViewer.
      * Sets all fields and displays the initial puzzle.
@@ -26,14 +27,17 @@ public class AkariViewer implements MouseListener
         // TODO 10 - COMPLETED (might need to change canvas size to scale)
         this.puzzle = puzzle;
         this.canvasSize = 520;
+        this.sidebarSize = 125;
         this.cell_width = this.canvasSize/puzzle.getSize();
         
         // init fonts for displayPuzzle method
         gridFont = new Font("Courier", Font.PLAIN, 30);
         outputFont = new Font("Courier", Font.PLAIN, 20);
         
-        sc = new SimpleCanvas("Akari Game", canvasSize, canvasSize + 125, Color.white);
+        sc = new SimpleCanvas("Akari Game", canvasSize, canvasSize + sidebarSize, Color.white);
         sc.addMouseListener(this);
+        
+        displayButtons();
         
         displayPuzzle();
     }
@@ -81,6 +85,7 @@ public class AkariViewer implements MouseListener
         // TODO 11 - In Progress (not sure how to account for lit squares)
         Color col;
         Color strColor;
+        sc.setFont(gridFont);
         
         for (int r = 0; r < puzzle.getSize(); r++) {
             for (int c = 0; c < puzzle.getSize(); c++) {
@@ -124,7 +129,6 @@ public class AkariViewer implements MouseListener
                 }
                 sc.drawRectangle(c * cell_width, r * cell_width, (c + 1) * cell_width, (r + 1) * cell_width, col);               
                 // draw text here
-                sc.setFont(gridFont);
                 if (charDisp != "") {sc.drawString(charDisp, c * cell_width + (cell_width/2), r * cell_width + (cell_width/2), strColor);}
             }
         }
@@ -157,7 +161,10 @@ public class AkariViewer implements MouseListener
                 this.leftClick((e.getY() / this.cell_width), (e.getX() / (this.cell_width)));
             // use this for button presses
             } else {
-                
+                if (e.getX() >= cell_width/2 & e.getX() <= cell_width/2 + buttonLen &
+                    e.getY() <= canvasSize + (sidebarSize/10) + buttonHei & e.getY() >= canvasSize + + (sidebarSize/10)) {
+                    this.clearBoard();
+                }
             }
         } else {
             // do some cool visual thing when puzzle is solved
@@ -172,6 +179,21 @@ public class AkariViewer implements MouseListener
     
     // helper methods
     private void clearBoard() {
+        puzzle.clear();
+        displayPuzzle();
+    }
     
+    private void checkBoard() {
+        
+    }
+    
+    private void displayButtons() {
+        int buttonLen = cell_width * 2;
+        int buttonHei = cell_width / 2;
+        
+        sc.setFont(outputFont);
+        
+        sc.drawRectangle(cell_width/2, canvasSize + (sidebarSize/10), cell_width/2 + buttonLen, canvasSize + (sidebarSize/10) + buttonHei, Color.BLACK);
+        sc.drawString("Clear", cell_width/2 + 45, canvasSize + (sidebarSize/10) + 25, Color.WHITE);
     }
 }
