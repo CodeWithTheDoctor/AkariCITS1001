@@ -165,6 +165,9 @@ public class Akari
     {
         // TODO 14
         int numBulbs = 0;
+        if(!isLegal(r,c)) {
+            throw new IllegalArgumentException("Coordinates entered for numberOfBulbs were not in the grid. Please enter valid coordinates.");
+        }
         if(isLegal(r-1,c)) {
             if(board[r-1][c] == Space.BULB){
                 numBulbs++;
@@ -195,7 +198,7 @@ public class Akari
     public boolean canSeeBulb(int r, int c)
     {
         // TODO 15 - COMPLETED
-        if (isLegal(r, c) == false) {throw new IllegalArgumentException("This square does not exist on the grid.");}
+        if (!isLegal(r, c)) {throw new IllegalArgumentException("This square does not exist on the grid.");}
         int lookLeft = 0;
         int lookRight = 0;
         int lookUp = 0;
@@ -209,8 +212,7 @@ public class Akari
         
         // return true inside of loop when       
         do {
-            if (board[r][c] != Space.BULB && board[r][c] != Space.EMPTY) {break;}
-            if (board[r][c] == Space.BULB) {return true;}
+            //if (board[r][c] != Space.BULB && board[r][c] != Space.EMPTY) {break;}
             
             if (leftStop == false) {
                 lookLeft--;
@@ -273,7 +275,51 @@ public class Akari
     public String isSolution()
     {
         // TODO 16 (might need to create new method)
-        return null;
+        ArrayList<String> unlitBulbs = new ArrayList<>();
+        ArrayList<String> clashingBulbs = new ArrayList<>();
+        ArrayList<String> wrongBulbs = new ArrayList<>();
+        
+        for(int r = 0; r<size; r++) {
+            for(int c = 0; c<size; c++) {
+                if(board[r][c] == Space.EMPTY) {
+                    if(!canSeeBulb(r,c)){
+                        unlitBulbs.add(Integer.toString(r) + "," + Integer.toString(c));
+                    }
+                }
+                if(board[r][c] == Space.BULB) {
+                    if(canSeeBulb(r,c)) {
+                        clashingBulbs.add(Integer.toString(r) + "," + Integer.toString(c));
+                    }
+                }
+                if(board[r][c] == Space.ONE) {
+                    if(!(numberOfBulbs(r,c) == 1)){
+                        wrongBulbs.add(Integer.toString(r) + "," + Integer.toString(c));
+                    }
+                }
+                if(board[r][c] == Space.TWO) {
+                    if(!(numberOfBulbs(r,c) == 2)){
+                        wrongBulbs.add(Integer.toString(r) + "," + Integer.toString(c));
+                    }
+                }
+                if(board[r][c] == Space.THREE) {
+                    if(!(numberOfBulbs(r,c) == 3)){
+                        wrongBulbs.add(Integer.toString(r) + "," + Integer.toString(c));
+                    }
+                }
+                if(board[r][c] == Space.FOUR) {
+                    if(!(numberOfBulbs(r,c) == 4)){
+                        wrongBulbs.add(Integer.toString(r) + "," + Integer.toString(c));
+                    }
+                }
+                
+                if(unlitBulbs.isEmpty() && clashingBulbs.isEmpty() && wrongBulbs.isEmpty()) {
+                    return "\u2713\u2713\u2713";
+                }
+                else{
+                    
+                }
+            }
+        }
     }
     
     // Other methods
