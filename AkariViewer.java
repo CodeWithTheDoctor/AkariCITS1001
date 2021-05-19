@@ -17,9 +17,11 @@ public class AkariViewer implements MouseListener
     private int cell_width;
     private Font gridFont;
     private Font outputFont;
+
     private Font buttonFont;
     private Font winFont;
     private Font consoleFont;
+
     /**
      * Constructor for objects of class AkariViewer.
      * Sets all fields and displays the initial puzzle.

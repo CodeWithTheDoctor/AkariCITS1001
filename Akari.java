@@ -313,7 +313,7 @@ public class Akari
                 }
             }
         }
-        
+
         if(unlitBulbs.isEmpty() && clashingBulbs.isEmpty() && wrongBulbs.isEmpty()) {
             return "\u2713\u2713\u2713";
         }
