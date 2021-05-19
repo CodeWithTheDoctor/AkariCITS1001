@@ -83,7 +83,7 @@ public class AkariViewer implements MouseListener
                     col = Color.YELLOW;
                     if (puzzle.getBoard(r, c) == Space.BULB) {
                         // set char to print
-                        charDisp = "\u1F4A1";
+                        charDisp = "\uD83D\uDCA1";
                     }
                 } else {
                     if (puzzle.getBoard(r, c) == Space.EMPTY){
