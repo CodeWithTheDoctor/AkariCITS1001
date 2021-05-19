@@ -196,7 +196,7 @@ public class Akari
      */
     public boolean canSeeBulb(int r, int c)
     {
-        // TODO 15
+        // TODO 15 - COMPLETED
         if (isLegal(r, c) == false) {throw new IllegalArgumentException("This square does not exist on the grid.");}
         int lookLeft = 0;
         int lookRight = 0;
@@ -209,23 +209,17 @@ public class Akari
         boolean upStop = false;
         boolean downStop = false;
         
-        // return true inside of loop when
-        /*
+        // return true inside of loop when       
         do {
             if (leftStop == false) {
                 lookLeft--;
                 // check if square is legal, else square does not exist on grid
                 if (isLegal(r + lookLeft, c)) {
                     // check if space is bulb, black or empty
-                    switch (board[r + lookLeft][c]) {
-                        case BULB:
-                            return true;
-                        case EMPTY:
-                            break;
-                        // if not bulb or empty
-                        default:
-                            leftStop = false;
-                            break;
+                    if (board[r + lookLeft][c] == Space.BULB) {return true;}
+                    else {
+                        if (board[r + lookLeft][c] == Space.EMPTY) {}
+                        else {leftStop = true;}
                     }
                 } else {leftStop = true;}
             }
@@ -233,15 +227,10 @@ public class Akari
             if (rightStop == false) {
                 lookRight++;
                 if (isLegal(r + lookRight, c)) {
-                    switch (board[r + lookRight][c]) {
-                        case BULB:
-                            return true;
-                        case EMPTY:
-                            break;
-                        // if not bulb or empty
-                        default:
-                            rightStop = false;
-                            break;
+                    if (board[r + lookRight][c] == Space.BULB) {return true;}
+                    else {
+                        if (board[r + lookRight][c] == Space.EMPTY) {}
+                        else {rightStop = true;}
                     }
                 } else {rightStop = true;}
             }
@@ -249,15 +238,10 @@ public class Akari
             if (upStop == false) {
                 lookUp--;
                 if (isLegal(r, c + lookUp)) {
-                    switch (board[r][c + lookUp]) {
-                        case BULB:
-                            return true;
-                        case EMPTY:
-                            break;
-                        // if not bulb or empty
-                        default:
-                            upStop = false;
-                            break;
+                    if (board[r][c + lookUp] == Space.BULB) {return true;}
+                    else {
+                        if (board[r][c + lookUp] == Space.EMPTY) {}
+                        else {upStop = true;}
                     }
                 } else {upStop = true;}
             }
@@ -265,62 +249,14 @@ public class Akari
             if (downStop == false) {
                 lookDown++;
                 if (isLegal(r, c + lookDown)) {
-                    switch (board[r][c + lookDown]) {
-                        case BULB:
-                            return true;
-                        case EMPTY:
-                            break;
-                        // if not bulb or empty
-                        default:
-                            downStop = false;
-                            break;
+                    if (board[r][c + lookDown] == Space.BULB) {return true;}
+                    else {
+                        if (board[r][c + lookDown] == Space.EMPTY) {}
+                        else {downStop = true;}
                     }
-                } else {downStop = true;}
-            }            
-            // might change this condition - have the return statement in the loop
-        } while (!leftStop || !rightStop || !upStop || !downStop);
-        */
-       
-        /*
-        do {
-            if (leftStop == false) {
-                lookLeft--;
-                // check if square is legal, else square does not exist on grid
-                if (isLegal(r + lookLeft, c)) {
-                    // check if space is bulb, black or empty
-                    if (board[r + lookLeft][c] == Space.BULB) {return true;
-                    } else {if (board[r + lookLeft][c] == Space.EMPTY) {}
-                    else {leftStop = false;}}
-                }
-                } else {leftStop = true;}
-    
-            if (rightStop == false) {
-                lookRight++;
-                if (isLegal(r + lookRight, c)) {
-                    if (board[r + lookRight][c] == Space.BULB) {return true;
-                    } else {if (board[r + lookRight][c] == Space.EMPTY) {}
-                    else {rightStop = false;}}
-                    }
-                } else {rightStop = true;}
-            
-            if (upStop == false) {
-                lookUp--;
-                if (isLegal(r, c + lookUp)) {
-                    if (board[r][c + lookUp] == Space.BULB) {return true;
-                    } else {if (board[r][c + lookUp] == Space.EMPTY) {}
-                    else {upStop = false;}}
-                    }
-                } else {upStop = true;}
-
-            if (downStop == false) {
-                lookDown++;
-                if (isLegal(r, c + lookDown)) {
-                    if (board[r][c + lookDown] == Space.BULB) {return true;
-                    } else {if (board[r][c + lookDown] == Space.EMPTY) {}
-                    else {downStop = false;}}
-                    }
-                } else {downStop = true;}         
-        } while (!leftStop || !rightStop || !upStop || !downStop); */
+                } else {downStop = true;} 
+            }
+        } while (!leftStop || !rightStop || !upStop || !downStop);        
         return false;
     }
     

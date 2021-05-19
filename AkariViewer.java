@@ -25,6 +25,7 @@ public class AkariViewer implements MouseListener
         this.canvasSize = 520;
         
         sc = new SimpleCanvas("Akari Game", canvasSize, canvasSize + 125, Color.white);
+        //sc.setFont();
         sc.addMouseListener(this);
         
         displayPuzzle();
