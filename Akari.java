@@ -311,15 +311,37 @@ public class Akari
                         wrongBulbs.add(Integer.toString(r) + "," + Integer.toString(c));
                     }
                 }
-                
+            }
+        }
+        
                 if(unlitBulbs.isEmpty() && clashingBulbs.isEmpty() && wrongBulbs.isEmpty()) {
                     return "\u2713\u2713\u2713";
                 }
                 else{
-                    
+                    String message = "";
+                    if(!unlitBulbs.isEmpty()){
+                        message = "Unlit square at ";
+                        for(String a: unlitBulbs) {
+                            if(message == "Unlit square at ") {message += a;}
+                            else {message += " and " + a;}
+                        }
+                    }
+                    else if(!clashingBulbs.isEmpty()){
+                        message = "Clashing bulb at ";
+                        for(String a: unlitBulbs) {
+                            if(message == "Clashing bulb at ") {message += a;}
+                            else {message += " and " + a;}
+                        }
+                    }
+                    else if(!wrongBulbs.isEmpty()) {
+                        message = "Broken number at ";
+                        for(String a: unlitBulbs) {
+                            if(message == "Broken number at ") {message += a;}
+                            else {message += " and " + a;}
+                        }
+                    }
+                    return message;
                 }
-            }
-        }
     }
     
     // Other methods
