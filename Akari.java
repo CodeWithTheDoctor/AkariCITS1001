@@ -274,7 +274,7 @@ public class Akari
      */
     public String isSolution()
     {
-        // TODO 16 (might need to create new method)
+        // TODO 16 - could use some optimisation
         ArrayList<String> unlitBulbs = new ArrayList<>();
         ArrayList<String> clashingBulbs = new ArrayList<>();
         ArrayList<String> wrongBulbs = new ArrayList<>();
@@ -342,14 +342,5 @@ public class Akari
             }
             return message;
         }
-    }
-    
-    // Other methods
-    /**
-     * Returns true if puzzle is complete
-     */
-    public boolean finished()
-    {
-        return false;
     }
 }
