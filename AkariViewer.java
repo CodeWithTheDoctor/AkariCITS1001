@@ -14,6 +14,7 @@ public class AkariViewer implements MouseListener
     private Akari puzzle;    // the internal representation of the puzzle
     private SimpleCanvas sc; // the display window
     private int canvasSize;  // the size of the display window
+    private int cell_width;
     /**
      * Constructor for objects of class AkariViewer.
      * Sets all fields and displays the initial puzzle.
@@ -23,6 +24,7 @@ public class AkariViewer implements MouseListener
         // TODO 10 - COMPLETED (might need to change canvas size to scale)
         this.puzzle = puzzle;
         this.canvasSize = 520;
+        this.cell_width = this.canvasSize/puzzle.getSize();
         
         sc = new SimpleCanvas("Akari Game", canvasSize, canvasSize + 125, Color.white);
         //sc.setFont();
@@ -73,7 +75,6 @@ public class AkariViewer implements MouseListener
     {
         // TODO 11 - In Progress (not sure how to account for lit squares)
         Color col;
-        int cell_width = this.canvasSize/puzzle.getSize();
         
         for (int r = 0; r < puzzle.getSize(); r++) {
             for (int c = 0; c < puzzle.getSize(); c++) {
@@ -139,18 +140,17 @@ public class AkariViewer implements MouseListener
     // TODO 13 (only implementing basic left click functionality for now)
     // change code in mousePressed() to mouseClicked()
     public void mousePressed (MouseEvent e) {
-    }
-
-    public void mouseClicked (MouseEvent e) {
         //call finished method on puzzle -> returns boolean
         boolean complete = puzzle.finished();
         if (!complete) {
-            puzzle.leftClick((e.getX() / (puzzle.getSize()/600)), (e.getX() / (puzzle.getSize()/600)));
+            this.leftClick((e.getY() / this.cell_width), (e.getX() / (this.cell_width)));
         } else {
             // do some cool visual thing when puzzle is solved
             System.out.println("COMPLETE");
-        }
+        } 
     }
+
+    public void mouseClicked (MouseEvent e) {}
     public void mouseReleased(MouseEvent e) {}
     public void mouseEntered (MouseEvent e) {}
     public void mouseExited  (MouseEvent e) {}

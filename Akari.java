@@ -41,8 +41,6 @@ public class Akari
                }
            }
        }
-       
-       System.out.println(Arrays.deepToString(board));
     }
     
     /**
@@ -137,7 +135,7 @@ public class Akari
      */
     public void leftClick(int r, int c)
     {
-        // TODO 8 - COMPLETEDs
+        // TODO 8 - COMPLETED
         if(isLegal(r,c)) {
             if(board[r][c] == Space.EMPTY) {
                 board[r][c] = Space.BULB;
@@ -211,6 +209,9 @@ public class Akari
         
         // return true inside of loop when       
         do {
+            if (board[r][c] != Space.BULB && board[r][c] != Space.EMPTY) {break;}
+            if (board[r][c] == Space.BULB) {return true;}
+            
             if (leftStop == false) {
                 lookLeft--;
                 // check if square is legal, else square does not exist on grid
@@ -259,8 +260,6 @@ public class Akari
         } while (!leftStop || !rightStop || !upStop || !downStop);        
         return false;
     }
-    
-    
     
     /**
      * Returns an assessment of the state of the puzzle, either 
