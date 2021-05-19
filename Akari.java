@@ -323,21 +323,21 @@ public class Akari
                 message = "Unlit square at ";
                 for(String a: unlitBulbs) {
                     if(message == "Unlit square at ") {message += a;}
-                    else {message += " and " + a;}
+                    else {message += "\n and other places."; break;}
                 }
             }
             else if(!clashingBulbs.isEmpty()){
                 message = "Clashing bulb at ";
                 for(String a: clashingBulbs) {
                     if(message == "Clashing bulb at ") {message += a;}
-                    else {message += " and " + a;}
+                    else {message += "\n and other places."; break;}
                 }
             }
             else if(!wrongBulbs.isEmpty()) {
                 message = "Broken number at ";
                 for(String a: wrongBulbs) {
                     if(message == "Broken number at ") {message += a;}
-                    else {message += " and " + a;}
+                    else {message += "\n and other places."; break;}
                 }
             }
             return message;

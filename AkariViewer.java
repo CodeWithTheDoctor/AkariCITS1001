@@ -17,6 +17,9 @@ public class AkariViewer implements MouseListener
     private int cell_width;
     private Font gridFont;
     private Font outputFont;
+    private Font buttonFont;
+    private Font winFont;
+    private Font consoleFont;
     /**
      * Constructor for objects of class AkariViewer.
      * Sets all fields and displays the initial puzzle.
@@ -31,6 +34,9 @@ public class AkariViewer implements MouseListener
         // init fonts for displayPuzzle method
         gridFont = new Font("Courier", Font.PLAIN, 30);
         outputFont = new Font("Courier", Font.PLAIN, 20);
+        buttonFont = new Font("Courier",Font.PLAIN, 20);
+        consoleFont = new Font("Courier", Font.PLAIN, 17);
+        winFont = new Font("Courier",Font.PLAIN, 40);
         
         sc = new SimpleCanvas("Akari Game", canvasSize, canvasSize + 125, Color.white);
         sc.addMouseListener(this);
@@ -134,6 +140,19 @@ public class AkariViewer implements MouseListener
             sc.drawLine(0, i * cell_width,puzzle.getSize() * cell_width, i * cell_width, Color.BLACK);
             sc.drawLine(i * cell_width, 0, i * cell_width, puzzle.getSize() * cell_width, Color.BLACK);
         }
+        
+        //Drawing the U.I beneath the grid.
+        sc.drawRectangle(0,this.canvasSize,this.canvasSize,this.canvasSize+150,new Color(204, 255, 204));
+        sc.drawRectangle(10,this.canvasSize+30,312,this.canvasSize+100,Color.WHITE);
+        //sc.drawString("Console:",10,this.canvasSize+30, Color.BLACK);
+        
+        //the Clear and Solved? button
+        sc.drawRectangle(330, this.canvasSize+30, this.canvasSize - 10, this.canvasSize+60,new Color(240, 240, 245));
+        sc.drawRectangle(330, this.canvasSize+70, this.canvasSize - 10, this.canvasSize+100,new Color(240, 240, 245));
+        sc.setFont(buttonFont);
+        sc.drawString("CLEAR",390,this.canvasSize+50, Color.RED);
+        sc.drawString("SOLVED?",380,this.canvasSize+90, Color.BLACK);
+
     }
     
     /**
@@ -163,6 +182,20 @@ public class AkariViewer implements MouseListener
             // do some cool visual thing when puzzle is solved
             System.out.println("COMPLETE");
         } 
+        if(e.getX() >= 300 && e.getX() <=  this.canvasSize - 10 && e.getY() >= this.canvasSize+30 && e.getY() <= this.canvasSize+60) {
+            clearBoard();
+            displayPuzzle();
+        }
+        if(e.getX() >= 300 && e.getX() <=  this.canvasSize - 10 && e.getY() >= this.canvasSize+70 && e.getY() <= this.canvasSize+100) {
+            if(puzzle.isSolution() == "\u2713\u2713\u2713"){
+                sc.setFont(winFont);
+                sc.drawString(puzzle.isSolution(),30, this.canvasSize+65,Color.GREEN);
+            }
+            else {
+                sc.setFont(consoleFont);
+                sc.drawString(puzzle.isSolution(),20, this.canvasSize+50,Color.RED);
+            }
+        }
     }
 
     public void mouseClicked (MouseEvent e) {}
@@ -172,6 +205,6 @@ public class AkariViewer implements MouseListener
     
     // helper methods
     private void clearBoard() {
-    
+        this.puzzle.clear();
     }
 }
