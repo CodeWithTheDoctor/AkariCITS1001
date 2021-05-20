@@ -29,7 +29,7 @@ public class AkariViewer implements MouseListener
      */
     public AkariViewer(Akari puzzle)
     {
-        // TODO 10 - COMPLETED (might need to change canvas size to scale)
+        // TODO 10 - COMPLETED
         this.puzzle = puzzle;
         this.canvasSize = 520;
         this.cell_width = this.canvasSize/puzzle.getSize();
@@ -151,7 +151,7 @@ public class AkariViewer implements MouseListener
      */
     public void leftClick(int r, int c)
     {
-        // TODO 12
+        // TODO 12 - COMPLETE
         puzzle.leftClick(r, c);
         displayPuzzle();
     }

@@ -23,7 +23,7 @@ public class Akari
      */
     public Akari(String filename)
     {
-        // TODO 3 - COMPLETED (Needs optimisation - check for negatives in this.board [lyndon mentioned it in lecture])
+        // TODO 3 - COMPLETED
        FileIO file = new FileIO(filename);
        this.filename = filename;
        this.size = Integer.parseInt(file.getLines().get(0));
@@ -165,7 +165,7 @@ public class Akari
      */
     public int numberOfBulbs(int r, int c)
     {
-        // TODO 14
+        // TODO 14 - COMPLETE
         int numBulbs = 0;
         if(!isLegal(r,c)) {
             throw new IllegalArgumentException("Coordinates entered for numberOfBulbs were not in the grid. Please enter valid coordinates.");
@@ -276,7 +276,7 @@ public class Akari
      */
     public String isSolution()
     {
-        // TODO 16 - could use some optimisation
+        // TODO 16 - COMPLETE
         ArrayList<String> unlitBulbs = new ArrayList<>();
         ArrayList<String> clashingBulbs = new ArrayList<>();
         ArrayList<String> wrongBulbs = new ArrayList<>();
