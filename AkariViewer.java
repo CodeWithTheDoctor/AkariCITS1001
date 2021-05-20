@@ -1,5 +1,6 @@
 /**
  * Peralta Garcia, Sean - 23088091
+ * Ithape, Ashish (Ash) - 23066342
  * AkariViewer represents an interface for a player of Akari.
  *
  * @author Lyndon While

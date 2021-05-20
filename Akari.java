@@ -1,5 +1,6 @@
 /**
  * Peralta Garcia, Sean - 23088091
+ * Ithape, Ashish (Ash) - 23066342
  * Akari represents a single puzzle of the game Akari.
  *
  * @author Lyndon While 
