@@ -33,7 +33,7 @@ public class AkariViewer implements MouseListener
         this.cell_width = this.canvasSize/puzzle.getSize();
         
         // init fonts for displayPuzzle method
-        gridFont = new Font("Courier", Font.PLAIN, 30);
+        gridFont = new Font("Courier", Font.PLAIN, cell_width/2);
         buttonFont = new Font("Courier",Font.PLAIN, 20);
         consoleFont = new Font("Courier", Font.PLAIN, 17);
         winFont = new Font("Courier",Font.PLAIN, 40);

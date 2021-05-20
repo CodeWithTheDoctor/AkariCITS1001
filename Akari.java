@@ -37,7 +37,7 @@ public class Akari
            String[] a = file.getLines().get(i).split(" ");
            for (String x: a) {
                for (int z = 1; z < x.length(); z++) {
-                   board[x.charAt(0)-'0'][x.charAt(z)-'0'] = Space.values()[i - 1];
+                   board[parseIndex(x.charAt(0))][parseIndex(x.charAt(z))] = Space.values()[i - 1];
                }
            }
        }
@@ -48,7 +48,7 @@ public class Akari
      */
     public Akari()
     {
-        this("Puzzles/p7-e7.txt");
+        this("Puzzles/p25-e1.txt");
     }
     
     /**
