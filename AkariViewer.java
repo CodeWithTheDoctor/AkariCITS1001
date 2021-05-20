@@ -1,4 +1,5 @@
 /**
+ * Peralta Garcia, Sean - 23088091
  * AkariViewer represents an interface for a player of Akari.
  *
  * @author Lyndon While
@@ -159,7 +160,7 @@ public class AkariViewer implements MouseListener
         this.leftClick((e.getY() / this.cell_width), (e.getX() / (this.cell_width)));
         if(e.getX() >= 300 && e.getX() <=  this.canvasSize - 10 && e.getY() >= this.canvasSize+30 && e.getY() <= this.canvasSize+60) {
             clearBoard();
-            displayPuzzle();
+            displayConsole();
         }
         if(e.getX() >= 300 && e.getX() <=  this.canvasSize - 10 && e.getY() >= this.canvasSize+70 && e.getY() <= this.canvasSize+100) {
             // redraw to prevent text overlap
@@ -183,6 +184,7 @@ public class AkariViewer implements MouseListener
     // helper methods
     private void clearBoard() {
         this.puzzle.clear();
+        displayPuzzle();
     }
     
     private void displayConsole() {

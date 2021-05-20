@@ -1,4 +1,5 @@
 /**
+ * Peralta Garcia, Sean - 23088091
  * Akari represents a single puzzle of the game Akari.
  *
  * @author Lyndon While 
