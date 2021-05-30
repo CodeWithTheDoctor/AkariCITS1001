@@ -1,14 +1,15 @@
 # Akari Game
-# PURPOSE OF PROJECT: 
+** PURPOSE OF PROJECT: 
   - To Design a fully playable Akari game that allows for the create the grid to be created using a textfile.
 
 # HOW TO START THIS PROJECT: 
-                            Right click the Akariviewer class, and type the following
-                            new Akari("Puzzles/{filename}"), where filename is the name
-                            of the file you wrote the grid layout in. They should be placed
-                            in the puzzles folder in this case. Notice there are already
-                            files in the Puzzles folder such as P14-e1
-                            so: new Akari("Puzzles/P14-e1") would work as an input.
+  Right click the Akariviewer class, and type the following 
+  new Akari("Puzzles/{filename}"), where filename is the name
+  of the file you wrote the grid layout in. They should be placed
+  in the puzzles folder in this case. Notice there are already
+  files in the Puzzles folder such as P14-e1
+  so: new Akari("Puzzles/P14-e1") would work as an input.
+  
 AUTHORS: Sean and Ash
 
 USER INSTRUCTIONS: Place a lightbulb on the empty spaces in the grid by clicking on
